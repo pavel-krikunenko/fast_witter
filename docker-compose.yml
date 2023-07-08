@@ -1,0 +1,44 @@
+version: "3.9"
+
+
+services:
+  ftwitter:
+    build:
+      context: .
+      dockerfile: etc/Dockerfile
+    volumes:
+      - .:/code
+    ports:
+      - "8010:8010"
+    environment:
+      SRVC_CONFIG: /code/etc/config.json
+      SRVC_LOG: /code/etc/logging.conf
+    depends_on:
+      - db
+      - redis
+      - dbmate
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: fwitter
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  dbmate:
+    image: amacneil/dbmate
+    command: -d "/code/etc/migrations" up
+    volumes:
+      - .:/code
+    links:
+      - db
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/fwitter?sslmode=disable
+  redis:
+    image: redis

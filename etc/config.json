@@ -1,0 +1,10 @@
+{
+  "debug": true,
+  "salt": "ASHdbasdkwertuyojmgbh.",
+  "db": {
+    "dsn": "postgresql://postgres:postgres@db/fwitter"
+  },
+  "redis": {
+    "dsn": "redis://redis"
+  }
+}
