@@ -24,6 +24,8 @@ migrations directory {project_root}/etc/migrations
 
 ### RUN
 
+default server run on 8010 port
+
 - #### Docker
     - ``` docker-compose build ```
     - ``` docker-compose up ```
