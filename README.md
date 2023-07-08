@@ -18,7 +18,7 @@ install requirements command:
 ### Migrations
 
 <p>
-for migrations use service dbmate: (https://github.com/amacneil/dbmate).
+for migrations use service [dbmate](https://github.com/amacneil/dbmate) .
 migrations directory {project_root}/etc/migrations
 </p>
 
@@ -34,6 +34,6 @@ migrations directory {project_root}/etc/migrations
 
 after run project in docker
 
-- ```docker run ftwitter pytest tests ``` for run all tests
-- ```docker run ftwitter pytest tests/api/test_auth.py``` for run tests for one module
-- ```docker run ftwitter pytest tests/api/test_auth.py::test_auth_me``` for running one test
+- ```docker run ftwitter pytest tests ``` run all tests
+- ```docker run ftwitter pytest tests/api/test_auth.py``` run tests for one module
+- ```docker run ftwitter pytest tests/api/test_auth.py::test_auth_me``` run one test
